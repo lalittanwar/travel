@@ -1,0 +1,11 @@
+.main-title{
+    text-align: center;
+    font-family: monospace;
+    padding: 6px 0 6px 15px;
+    font-size: x-large;
+}
+.app-bar{
+    position:absolute;
+    background-color: '#4B1788' ;
+    display: inline;
+}
