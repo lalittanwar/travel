@@ -7,7 +7,10 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const store = createStore( reducer,compose( applyMiddleware( thunk ) ) );
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore( reducer,composeEnhancers( applyMiddleware( thunk ) ) );
+// const store = createStore( reducer,compose( ) );
 
 ReactDom.render(
     <Provider store={ store } >

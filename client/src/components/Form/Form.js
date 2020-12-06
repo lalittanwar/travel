@@ -5,8 +5,6 @@ import { useDispatch,useSelector } from 'react-redux';
 import { createPost,updatePost } from '../../actions/posts';
 import './Form.css';
 
-
-
 function Form ( { currentId,setCurrentId } ) {
 
     const dispatch = useDispatch();

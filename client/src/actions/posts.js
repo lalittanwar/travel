@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { FETCH_ALL,CREATE,LIKE,UPDATE,DELETE } from '../constants/actionTypes';
+import { FETCH_ALL,CREATE,LIKE,UPDATE,DELETE,CREATE_USER } from '../constants/actionTypes';
 
 export const getPosts = () => async ( dispatch ) => {
     try {
@@ -42,6 +42,16 @@ export const deletePost = ( id ) => async ( dispatch ) => {
     try {
         await api.deletePost( id );
         dispatch( { 'type': DELETE,'payload': id } );
+    } catch ( error ) {
+        console.log( error.message );
+    }
+}
+
+
+export const createUser = ( user ) => async ( dispatch ) => {
+    try {
+        await api.createUser( user );
+        dispatch( { 'type': CREATE_USER,'payload': user } );
     } catch ( error ) {
         console.log( error.message );
     }

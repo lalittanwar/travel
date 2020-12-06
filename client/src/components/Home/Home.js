@@ -13,7 +13,7 @@ function Home () {
 
     return (
         <div>
-            <Container maxWidth="md" className="back">
+            <Container maxWidth="md" className="back" >
                 <AppBar className="app-bar">
                     <Toolbar>
                         <Typography variant="h6" style={ { flexGrow: 1 } }>Gayatri Graphics</Typography>
