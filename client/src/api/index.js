@@ -14,6 +14,6 @@ export const likePost = ( id,updatedPost ) => axios.patch( `${ url }/${ id }/lik
 export const deletePost = ( id ) => axios.delete( `${ url }/${ id }` );
 
 
-export const fetchUser = () => axios.get( url );
+export const getUser = ( user ) => axios.post( urlUser,user );
 
 export const createUser = ( newUser ) => axios.post( urlUser,newUser );
