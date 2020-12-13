@@ -8,9 +8,10 @@ import './Form.css';
 function Form ( { currentId,setCurrentId } ) {
 
     const dispatch = useDispatch();
+    const user = useSelector( state => state.users );
     const post = useSelector( state => currentId ? state.posts.find( ( p ) => p._id === currentId ) : null );
     const [ postData,setPostdata ] = useState( {
-        creator: '',title: '',message: '',tags: '',selectedFile: ''
+        creator: user.userName,title: '',message: '',tags: '',selectedFile: ''
     } );
 
     useEffect( () => {
@@ -29,7 +30,7 @@ function Form ( { currentId,setCurrentId } ) {
 
     const handleClear = () => {
         setCurrentId( null );
-        setPostdata( { creator: '',title: '',message: '',tags: '',selectedFile: '' } )
+        setPostdata( { creator: user.userName,title: '',message: '',tags: '',selectedFile: '' } )
     }
 
     return (
@@ -37,8 +38,8 @@ function Form ( { currentId,setCurrentId } ) {
             <Paper style={ { position: 'relative' } }>
                 <form onSubmit={ handleSubmit } className="form-container">
                     { currentId ? <Typography> Editing </Typography> : <Typography> Creating</Typography> }
-                    <TextField label="Creator" name="creator" value={ postData.creator } fullWidth={ true }
-                        onChange={ e => setPostdata( { ...postData,creator: e.target.value } ) } />
+                    {/* <TextField label="Creator" name="creator" value={ postData.creator } fullWidth={ true }
+                        onChange={ e => setPostdata( { ...postData,creator: e.target.value } ) } /> */}
                     <TextField label="Title " name="title" value={ postData.title } fullWidth={ true }
                         onChange={ e => setPostdata( { ...postData,title: e.target.value } ) } />
                     <TextField label="Message" name="message" value={ postData.message } fullWidth={ true }

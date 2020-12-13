@@ -29,7 +29,7 @@ export class Signup extends Component {
                         <form onSubmit={ this.handleSubmit } className="form-container">
                             <Typography> SignUp </Typography>
                             <TextField label="UserName" name="userName" fullWidth={ true } onChange={ e => this.setState( { userName: e.target.value } ) } />
-                            <TextField label="Password" name="password" fullWidth={ true } onChange={ e => this.setState( { password: e.target.value } ) } />
+                            <TextField label="Password" name="password" type="password" fullWidth={ true } onChange={ e => this.setState( { password: e.target.value } ) } />
                             <div className="form-button">
                                 <Button variant="contained" color="primary" type="submit">Submit</Button>
                                 <Button variant="contained" color="secondary" >Clear</Button>
