@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const url = "http://localhost:5000/posts";
-const urlUser = "http://localhost:5000/users";
+const urlGetUser = "http://localhost:5000/users/getUsers";
+const urlPostUser = "http://localhost:5000/users/PostUsers";
 
 export const fetchPosts = () => axios.get( url );
 
@@ -14,6 +15,6 @@ export const likePost = ( id,updatedPost ) => axios.patch( `${ url }/${ id }/lik
 export const deletePost = ( id ) => axios.delete( `${ url }/${ id }` );
 
 
-export const getUser = ( user ) => axios.post( urlUser,user );
+export const getUser = ( user ) => axios.post( urlGetUser,user );
 
-export const createUser = ( newUser ) => axios.post( urlUser,newUser );
+export const createUser = ( newUser ) => axios.post( urlPostUser,newUser );

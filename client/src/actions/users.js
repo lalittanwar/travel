@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { CREATE_USER,GET_USER } from '../constants/actionTypes';
+import { CREATE_USER,GET_USER,REMOVE_USER } from '../constants/actionTypes';
 
 export const createUser = ( user ) => async ( dispatch ) => {
     try {
@@ -17,6 +17,10 @@ export const getUser = ( user ) => async ( dispatch ) => {
     } catch ( error ) {
         console.log( error.message );
     }
+}
+
+export const removeUser = () => async ( dispatch ) => {
+    dispatch( { 'type': REMOVE_USER,'payload': [] } );
 }
 
 

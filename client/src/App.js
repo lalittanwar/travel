@@ -7,6 +7,8 @@ import './index.css';
 import { AppBar,Button,Typography,Toolbar } from '@material-ui/core';
 import { useSelector,useDispatch } from 'react-redux';
 import { logout } from './actions/login';
+import { removeUser } from './actions/users';
+
 
 const App = () => {
 
@@ -16,6 +18,7 @@ const App = () => {
 
     const onLogout = () => {
         dispatch( logout() );
+        dispatch( removeUser() );
     }
 
     return (

@@ -1,5 +1,5 @@
 import { Card,CardMedia,Typography,Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import './Post.css';
 import moment from 'moment';
 import { deletePost,getPosts,likePost } from '../../../actions/posts';
@@ -10,6 +10,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 function Post ( { post,setCurrentId,currentId } ) {
 
     const dispatch = useDispatch();
+    const user = useSelector( state => state.users );
+    const isLogin = useSelector( state => state.isLogin );
 
 
     const handleDelete = async ( post ) => {
@@ -27,9 +29,9 @@ function Post ( { post,setCurrentId,currentId } ) {
     return (
         <Card className="card">
             <div className="edit-icon">
-                <Button onClick={ () => setCurrentId( post._id ) } >
+                { ( user.userName === post.creator && isLogin ) ? <Button onClick={ () => setCurrentId( post._id ) } >
                     <MoreHorizIcon style={ { color: 'white' } } />
-                </Button>
+                </Button> : null }
             </div>
             <CardMedia className="card-media" component="img"
                 alt={ post.selectedFile }
@@ -49,9 +51,9 @@ function Post ( { post,setCurrentId,currentId } ) {
                     <ThumbUpAltOutlinedIcon />
                 </Button>
                 <Typography style={ { paddingTop: '6px' } }>{ post.likeCount }</Typography>
-                <Button onClick={ () => handleDelete( post._id ) } color="secondary">
+                { ( user.userName === post.creator && isLogin ) ? <Button onClick={ () => handleDelete( post._id ) } color="secondary">
                     <DeleteOutlinedIcon />
-                </Button>
+                </Button> : null }
             </div>
         </Card>
     )

@@ -1,4 +1,4 @@
-import { CREATE_USER,GET_USER } from '../constants/actionTypes'
+import { CREATE_USER,GET_USER,REMOVE_USER } from '../constants/actionTypes'
 
 const reducer = ( users = [],action ) => {
     switch ( action.type ) {
@@ -6,6 +6,8 @@ const reducer = ( users = [],action ) => {
             return action.payload;
         case CREATE_USER:
             return [ ...users,action.payload ];
+        case REMOVE_USER:
+            return action.payload;
         default:
             return users;
     }

@@ -2,6 +2,7 @@ const mongoose = require( 'mongoose' );
 const User = require( '../models/user' );
 
 const getUser = async ( req,res ) => {
+    console.log( 'get' );
     const userData = req.body;
     try {
         User.findOne( { userName: userData.userName },( error,user ) => {
@@ -23,6 +24,7 @@ const getUser = async ( req,res ) => {
 }
 
 const createUser = async ( req,res ) => {
+    console.log( 'create' );
     const user = req.body;
     const newUser = new User( user );
     try {

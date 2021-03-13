@@ -3,7 +3,7 @@ const { getUser,createUser } = require( '../controller/users.js' );
 
 router = express.Router();
 
-router.post( '/',getUser );
-router.post( '/',createUser );
+router.post( '/getUsers',getUser );
+router.post( '/PostUsers',createUser );
 
 module.exports = router;
