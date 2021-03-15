@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/login';
 import * as api from '../../api';
 import { getUser } from '../../actions/users';
+import { createUser } from '../../actions/users';
 
 
-export class Login extends Component {
+export class Auth extends Component {
 
     constructor( props ) {
         super( props )
-
         this.state = {
             userName: '',
             password: '',
@@ -21,17 +21,25 @@ export class Login extends Component {
     handleSubmit = ( event ) => {
         event.preventDefault();
         let user = { userName: this.state.userName,password: this.state.password };
-        api.getUser( user )
-            .then( () => {
-                this.props.dispatch( getUser( user ) );
-                this.props.dispatch( login() );
-                this.props.history.push( '/' );
-                console.log( this.state );
-            } )
-            .catch( ( error ) => {
-                this.setState( { error: error.response.data } )
-                console.log( error.response.data );
-            } )
+        if ( !this.props.isSignUp ) {
+            api.getUser( user )
+                .then( () => {
+                    this.props.dispatch( getUser( user ) );
+                    this.props.dispatch( login() );
+                    this.props.history.push( '/' );
+                    console.log( this.state );
+                } )
+                .catch( ( error ) => {
+                    this.setState( { error: error.response.data.message } )
+                    console.log( error.response.data );
+                } )
+        } else {
+            let user = { userName: this.state.userName,password: this.state.password }
+            this.props.dispatch( createUser( user ) );
+            this.props.dispatch( login() );
+            this.props.history.push( '/' );
+            console.log( this.state )
+        }
     }
 
     render () {
@@ -40,11 +48,11 @@ export class Login extends Component {
                 <Container maxWidth="xs" style={ { paddingTop: '50px' } }>
                     <Paper >
                         <form onSubmit={ this.handleSubmit } className="form-container">
-                            <Typography> Login </Typography>
+                            <Typography> { this.props.isSignUp ? 'SignUp' : 'Login' }  </Typography>
                             <TextField label="UserName" name="userName" fullWidth={ true } onChange={ e => this.setState( { userName: e.target.value } ) } />
                             <TextField label="Password" name="password" fullWidth={ true } onChange={ e => this.setState( { password: e.target.value } ) } />
                             <div className="form-button">
-                                <Button variant="contained" color="primary" type="submit">Submit</Button>
+                                <Button variant="contained" color="primary" type="submit">{ this.props.isSignUp ? 'SignUp' : 'Login' }</Button>
                                 <Button variant="contained" color="secondary" >Clear</Button>
                             </div>
                         </form>
@@ -64,4 +72,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect( mapDispatchToProps )( Login )
+export default connect( mapDispatchToProps )( Auth )

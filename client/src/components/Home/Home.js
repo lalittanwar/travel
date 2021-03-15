@@ -18,7 +18,7 @@ function Home () {
                     <Container position="relative" style={ { 'marginTop': '50px' } } >
                         <Grid container direction="row" justify="space-between" spacing={ 2 } >
                             <Grid item xs={ 12 } sm={ 7 } ><Posts setCurrentId={ setCurrentId } /></Grid>
-                            { isLogin ? <Grid item xs={ 12 } sm={ 4 } ><Form currentId={ currentId } setCurrentId={ setCurrentId } /></Grid> : null }
+                            <Grid item xs={ 12 } sm={ 4 } ><Form currentId={ currentId } setCurrentId={ setCurrentId } /></Grid>
                         </Grid>
                     </Container>
                 </Grow>
